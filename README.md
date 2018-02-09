@@ -7,8 +7,8 @@
 ## 致谢
 
 1. 致谢[Hux](https://github.com/Huxpro/huxpro.github.io) 的博客模版;致谢[qiubaiying](https://github.com/qiubaiying/qiubaiying.github.io)的博客搭建教程。感谢这两位作者。 
-2. 感谢 [Jekyll](https://www.jekyll.com.cn/docs/sites)、[Github Pages](https://pages.github.com/) 和 [Bootstrap](https://getbootstrap.com)!
+2. 感谢 [Jekyll](https://www.jekyll.com.cn)、[Github Pages](https://pages.github.com/) 和 [Bootstrap](https://getbootstrap.com)!
 
 ## License
 
-遵循 MIT 许可证。有关详细,请参阅 [LICENSE](https://github.com/Anriku/Anriku.github.io/LICENSE)。
+遵循 MIT 许可证。有关详细,请参阅 [LICENSE](https://github.com/Anriku/Anriku.github.io/blob/master/LICENSE)。
