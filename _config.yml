@@ -62,11 +62,11 @@ disqus_username: Anriku
 # Gitalk
 gitalk:
   enable: true    #是否开启Gitalk评论
-  clientID: f1b53f66d3176f75ffe3   #生成的clientID
-  clientSecret: 4b172e57a617183d8033d20ad50bf153bef01a8e  #同上
+  clientID: 88dcf1129fd783cc8105   #生成的clientID
+  clientSecret: c8a5c6bc0b8c28a92add171eb428f788d84b9f2c  #同上
   repo: Anriku.github.io    #仓库名称
   owner: Anriku     #github用户名
-  admin: Anriku
+  admin: [Anriku]
   distractionFreeMode: true #是否启用类似FB的阴影遮罩
 
 
