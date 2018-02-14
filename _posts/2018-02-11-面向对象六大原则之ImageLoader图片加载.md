@@ -237,7 +237,7 @@ public class ImageLoader {
 
 # 博客参考
 
-> * `Android源码设计模式 第二版`
+> * Android源码设计模式 第二版
 > * [Android之Bitmap](https://www.jianshu.com/p/98c88f9ceafa)
 > * Android开发艺术探索
 > * [输入流InputStream的reset()和mark()方法注意事项](http://www.cnblogs.com/chenfei0801/archive/2013/04/01/2994513.html)
