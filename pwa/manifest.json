@@ -1,7 +1,7 @@
 {
-  "name": "Anriku Blog",
-  "short_name": "Anriku Blog",
-  "description": "奋斗ing的大学生.",
+  "name": "Hux Blog",
+  "short_name": "Hux Blog",
+  "description": "About an engineer & designer who loves web.",
   "icons": [{
     "src": "icons/128.png",
     "sizes": "128x128",
