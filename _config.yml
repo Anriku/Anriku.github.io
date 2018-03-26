@@ -21,7 +21,7 @@ RSS: false
 # weibo_username:     qiubaiying
 # zhihu_username:     qiubaiying
 github_username:    Anriku
-# facebook_username:  Wen Anriku
+# facebook_username:  baiying.qiu.7
 jianshu_username:   9943f945c7c3
 #twitter_username:   qiubaiying
 
@@ -57,7 +57,7 @@ kramdown:
 
 # 评论系统
 # Disqus（https://disqus.com/）
-# disqus_username: Anriku
+# disqus_username: qiubaiying
 
 # Gitalk
 gitalk:
@@ -86,7 +86,7 @@ ga_domain: anriku.top               # 默认的是 auto, 这里我是自定义�
 
 # Featured Tags
 featured-tags: true                     # 是否使用首页标签
-featured-condition-size: 0              # 相同标签数量大于这个数，才会出现在首页
+featured-condition-size: 1              # 相同标签数量大于这个数，才会出现在首页
 
 
 
