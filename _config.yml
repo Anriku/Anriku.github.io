@@ -66,7 +66,7 @@ gitalk:
   clientSecret: 145325ab7087b4a009c4892ced8ba62fe93d6f3e  #同上
   repo: Anriku.github.io    #仓库名称
   owner: Anriku     #github用户名
-  admin: 'Anriku'
+  admin: Anriku
   distractionFreeMode: true #是否启用类似FB的阴影遮罩
 
 
