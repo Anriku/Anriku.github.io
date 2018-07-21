@@ -131,4 +131,4 @@ Gradle是我们在Android开发中用来构建应用的工具。相信做Android
 
 # 参考
 
-[Building Android apps](implementation fileTree(dir: 'libs', include: ['*.jar']))
+[Building Android apps](https://guides.gradle.org/building-android-apps/?_ga=2.92453717.951381537.1532131873-369079375.1527669523)
