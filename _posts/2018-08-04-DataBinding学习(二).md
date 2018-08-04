@@ -2,7 +2,7 @@
 layout:     post
 title:      DataBinding学习(二)
 subtitle:   Binding Adapter
-date:       2018-08-03
+date:       2018-08-04
 author:     Anriku
 header-img: img/2018_08_04_post.jpeg
 catalog: true
