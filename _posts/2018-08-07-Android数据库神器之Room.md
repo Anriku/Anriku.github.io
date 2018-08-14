@@ -19,6 +19,16 @@ tags:
 
 # Room概述
 
+首先要使用基本的Room引入如下依赖：
+
+```
+implementation 'androidx.room:room-runtime:2.0.0-rc01'
+```
+
+至于androidx相关的内容已经在前面的博客中讲到了，这里就不重复了。
+
+
+
 ##### Database
 
 DataBase是一个数据库的容器。用**类级@Database**来进行标明。
