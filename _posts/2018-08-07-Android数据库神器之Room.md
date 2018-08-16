@@ -23,6 +23,7 @@ tags:
 
 ```
 implementation 'androidx.room:room-runtime:2.0.0-rc01'
+kapt "androidx.room:room-compiler:2.0.0-rc01" //Java使用annotationProcessor替代kapt
 ```
 
 至于androidx相关的内容已经在前面的博客中讲到了，这里就不重复了。
@@ -68,34 +69,132 @@ Entity是用来代表一个表的：
 
 ```kotlin
 @Entity(tableName = "student")
-class Student(stuId: String, stuName: String?, stuSex: String?, borrowNum: Int?) {
-
-    @PrimaryKey
-    @ColumnInfo(name = "stu_id")
-    var stuId: String = stuId
-        private set
-
-    @ColumnInfo(name = "stu_name")
-    var stuName: String? = stuName
-        private set
-
-    @ColumnInfo(name = "stu_sex")
-    var stuSex: String? = stuSex
-        private set
-
-
-    @ColumnInfo(name = "borrow_num")
-    var borrowNum: Int? = borrowNum
-        private set
-    
-}
+class Student(@PrimaryKey 
+              @ColumnInfo
+              (name = "stu_id") var stuId: String,
+              @ColumnInfo(name = "stu_name") 
+              var stuName: String?,
+              @ColumnInfo(name = "stu_sex") 
+              var stuSex: String?) 
 ```
 
-用@Entity注解来标志这个类是一个表，其中tableName是用来给这个表其个表名的(默认的话表名为类名)。当然@Entity还可以指定很多的参数。这里就不详解了。有兴趣的可以查看官方的文档。
+上面用@Entity来表示这个类是一个表。
+
+在Entity中通过@Primary来指定主键，主键也可以在@Entity中进行指定。
+
+在Entity中通过@ColumnInfo来对表中的列进行设置。如果无任何设置，还可以将@ColumnInfo注解去掉。默认的列名是类中的属性名。如果你不想让类中的属性存入数据库中，你可以使用@Ignore注解来进行忽略。
 
 
 
-然后类中的属性，通过@ColumnInfo这个注解来标志这个属性是表一列。name参数用来指定表的属性名。还有参数的设置。仍然请参考官方文档。在类的属性上可以通过@PrimaryKey注解来标志这个属性是一个主键。
+### 索引创建
+
+数据库中通过创建索引可以加快以本列为条件的查询的速度。
+
+**索引的创建有两种方式：**
+
+* 在Room中通过在@Entity中进行索引的添加
+* 在@ColumnInfo中进行定义
+
+```kotlin
+@Entity(tableName = "student", indices = [(Index(value = ["stu_name"]))])
+...
+
+or
+...
+class Student(...
+              @ColumnInfo(name = "stu_name", index = true) 
+              ...)
+
+```
+
+
+
+#### 外键的添加
+
+外键用于一个表建立于另一个表的关系。
+
+这里要有两个概念要弄清楚，**一个是parent表表示被关联的表(也就是主键被关联的表这里是Student表)，一个是child表指定我们定义外键的表**。
+
+**child表的外键必须是要在另一个被关联的parent表的主键的取值范围内的。**
+
+下面来个例子：
+
+```kotlin
+@Entity(foreignKeys =
+[(ForeignKey(entity = Student::class,parentColumns = ["stu_id"],childColumns = ["student_id"],
+        onDelete = ForeignKey.CASCADE))])
+class Book(
+        @PrimaryKey
+        @ColumnInfo(name = "book_name")
+        var bookName: String,
+        @ColumnInfo(name = "book_price")
+        var bookPrice: Double,
+        @ColumnInfo(name = "student_id", index = true)
+        var studentId: String
+)
+```
+
+
+
+其中Student为了稍微合理一点可以做如下个修改：
+
+```kotlin
+@Entity(tableName = "student", indices = [(Index(value = ["stu_name"]))],
+        foreignKeys = [ForeignKey(entity = Book::class, parentColumns = ["book_name"], childColumns = ["b_name"])])
+class Student(...
+              @ColumnInfo(name = "b_name",index = true)
+              var bookName: String)
+```
+
+
+
+
+
+从上面可以知道。**外键的定义是放在@Entity中的，这也只能在这里面进行定义。**
+
+entity用于指定**parent表**。
+
+然后，parentColumns和childColumns用于指定两表关联的属性。
+
+
+
+两个表通过外键连接有下面几种方式：
+
+* NO_ACTION: parent表中某行被删掉(更新)后。child表中与parent这一行发生映射的行不发生任何改变
+* RESTRICT: parent表中想要删除(更新)某行。如果child表中有与这一行发生映射的行。那么改操作拒绝。
+* SET_NULL/SET_DEFAULT:parent表中某行被删掉(更新)后。child表中与parent这一行发生映射的行设置为NULL(DEFAULT)值。
+* CASCADE:parent表中某行被删掉(更新)后。child表中与parent这一行发生映射的行被删掉(其属性更新到对应设置)
+
+
+
+外键在很多情况是有用的。比如上面的如果Book表中的某一本书被删掉了。那么通过onDelete的CASCADE方式可以将对应借了这本书的Student表中的对应记录删掉。
+
+
+
+#### 设置嵌套对象
+
+被嵌套类：
+
+```kotlin
+class BirthDay(
+        @ColumnInfo(name = "birth_day")
+        var birthYear: Int,
+        @ColumnInfo(name = "birth_month")
+        var birthMonth: Int,
+        @ColumnInfo(name = "birth_day")
+        var birthDay: Int)
+```
+
+Student表中的修改：
+
+```kotlin
+...
+class Student(...
+              @Embedded
+              var birthDay: BirthDay)
+```
+
+通过@Embedded可以使用一个对象作为表的一个属性。**但是在数据库中会把BirthDay类中所有属性集成到Student表中。**
 
 
 
@@ -119,10 +218,10 @@ interface StudentDao {
     @Insert
     fun insertStudent(student: Student)
 
-    @Query("select * from student")
+    @Query("SELECT * FROM student")
     fun queryAll(): List<Student>
 
-    @Query("select * from student where stu_id = :stuId")
+    @Query("SELECT * FROM student WHERE stu_id = :stuId")
     fun queryByStuId(stuId: String)
 
     @Delete
@@ -229,7 +328,7 @@ implementation "android.arch.persistence.room:rxjava2:1.1.1"
 @Dao
 interface UserDao {
 ...
-    @Query("select * from user")
+    @Query("SELECT * FROM user")
     fun getAll(): Observable<List<User>>
 ...
 
@@ -243,8 +342,7 @@ interface UserDao {
 ```kotlin
         Thread {
             val users = db.userDao().getAll()
-
-
+            
             users.subscribeOn(Schedulers.newThread())
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe {
@@ -294,6 +392,8 @@ Database这里用@Database注解来进行修饰，这里可以必须指定entiti
 
 # 使用数据库
 
+**这里为了方便说明，使用的表示是上面讲Entity的时候最初创建的表。关于外键等内容没有添加到表中！！！**
+
 ```kotlin
 class RoomActivity : AppCompatActivity() {
 
@@ -306,7 +406,7 @@ class RoomActivity : AppCompatActivity() {
             val studentDatabase = StudentDatabase.getDatabase(applicationContext)
 
             studentDatabase!!.studentDao().insertStudent(Student("2016215039",
-                    "anrikuwen","男",3))
+                    "anrikuwen","男"))
         }.start()
 
     }
@@ -336,7 +436,7 @@ class StudentConverter {
 @Dao
 interface StudentDao {
 ...
-    @Query("select * from student where stu_name like :user")
+    @Query("SELECT * FROM student WHERE stu_name LIKE :user")
     @TypeConverters(StudentConverter::class)
     fun queryByStu(user: User): List<Student>
 }
@@ -398,7 +498,7 @@ abstract class StudentDatabase : RoomDatabase() {
                         val migration = object :Migration(1,2){
                             override fun migrate(database: SupportSQLiteDatabase) {
                                 database.execSQL("""
-                                    alter table student add column return_time text
+                                    ALTER TABLE student ADD COLUMN return_time TEXT
                                 """.trimIndent())
                             }
 
@@ -434,6 +534,8 @@ abstract class StudentDatabase : RoomDatabase() {
 * Migration
 
 
+
+其它更多相关的内容请查阅相关的文档。enjoy coding!!!
 
 # 参考
 
