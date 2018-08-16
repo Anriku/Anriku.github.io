@@ -421,46 +421,80 @@ class RoomActivity : AppCompatActivity() {
 
 # 自定义类型转换
 
-在Room中，可以使用@TypeConverter和@TypeConverters来定义类型转换。通过一个例子来进行具体说明：
+虽然许多情况下用@Embedded注解能解决表的列是对象的情况。但是这并不万能，比如说：当列的属性是List对象的时候就不能是用@Embedded注解了。这时候自定义转换就可以用来解决这样的问题了。
+
+
+
+自定义转换有两个注解，一个是@TypeConverter，一个是@TypeConverters。具体使用如下：
 
 ```kotlin
-class StudentConverter {
+class IntListConverter {
     @TypeConverter
-    fun userToStu(user: User): String? {
-        return user.firstName + user.lastName
+    fun intListToString(years: List<Int>?): String{
+        val str = StringBuilder()
+        if (years != null) {
+            for (i in years.indices){
+                str.append(years[i])
+                if (i != years.size - 1){
+                    str.append("-")
+                }
+            }
+        }
+        return str.toString()
+    }
+
+    @TypeConverter
+    fun stringToIntList(year: String): List<Int>{
+        val years = year.split("-")
+        val ye = ArrayList<Int>()
+        for (y in years){
+            ye.add(y.toInt())
+        }
+        return ye
+    }
+}
+
+```
+
+这里定义的List&lt;Int&gt;和String的转换。
+
+```kotlin
+class BirthDay {
+    @ColumnInfo(name = "years")
+    var birthYear: Int = 0
+    @ColumnInfo(name = "birth_month")
+    @TypeConverters(IntListConverter::class)
+    var birthMonth: List<Int>? = null
+    @ColumnInfo(name = "birth_day")
+    @TypeConverters(IntListConverter::class)
+    var birthDay: List<Int>? = null
+
+    constructor(birthYear: Int, birthMonth: List<Int>?, birthDay: List<Int>?) {
+        this.birthYear = birthYear
+        this.birthMonth = birthMonth
+        this.birthDay = birthDay
     }
 }
 ```
 
-从上面的代码可以看到@TypeConverter用于修饰我们要进行转换的方法。这里是将一个User对象转换为String对象。
+这里定义了一个BirthDay类，其中有List&lt;Int&gt;相关的属性，并通过@TypeConverters来指定转换。**这里需要注意的是，不知道什么原因，@TypeConverters不能直接放在圆括号的初始化列表中(就行前面最简单的Entity那样的定义)，必须这样的定义**
+
+
+
+下面是Student表需要进行的修改:
 
 ```kotlin
-@Dao
-interface StudentDao {
 ...
-    @Query("SELECT * FROM student WHERE stu_name LIKE :user")
-    @TypeConverters(StudentConverter::class)
-    fun queryByStu(user: User): List<Student>
-}
+class Student(...
+              @Embedded
+              var birthDay: BirthDay)
 ```
 
-这里用@TypeConverters来修饰要进行转换的部分。其中参数是一个Class数组，用于表示用于转换的类。
+这样存储的时候就能将List转换为String进行存储。取出来的时候自动转换为List。
 
 
 
-这是User类
-
-```kotlin
-data class User(var firstName: String, var lastName: String)
-```
-
-
-
-然后在Activity中你就可以传入User来进行按姓名查询的操作了。
-
-
-
-@TypeConverters有下面几种修饰情况：
+**@TypeConverters有下面几种修饰情况：**
 
 * 如果给Database修饰，那么Daos和Entities都可以使用
 * 如果给Dao修饰，那么Dao中所有方法都能使用
