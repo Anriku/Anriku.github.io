@@ -30,7 +30,7 @@ kapt "androidx.room:room-compiler:2.0.0-rc01" //Java使用annotationProcessor替
 
 
 
-##### Database
+#### Database
 
 DataBase是一个数据库的容器。用**类级@Database**来进行标明。
 
@@ -49,19 +49,21 @@ DataBase是一个数据库的容器。用**类级@Database**来进行标明。
 
 
 
-##### Entity
+#### Entity
 
 Entity是用来表示一个表的
 
 
 
-##### DAO(Data Access Object)
+#### DAO(Data Access Object)
 
 DAO是包含一系列的用于进行表操作的方法
 
 
 
-#Entity的使用
+# Entity的使用
+
+
 
 Entity是用来代表一个表的：
 
