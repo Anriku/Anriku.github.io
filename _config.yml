@@ -62,8 +62,8 @@ kramdown:
 # Gitalk
 gitalk:
   enable: true    #是否开启Gitalk评论
-  clientID: 88dcf1129fd783cc8105   #生成的clientID
-  clientSecret: c8a5c6bc0b8c28a92add171eb428f788d84b9f2c  #同上
+  clientID: 95e3755da767c2a2c0c9   #生成的clientID
+  clientSecret: 1a228cf2ffaf5a8b9504b9d6c805d2a8608520c3  #同上
   repo: Anriku.github.io    #仓库名称
   owner: Anriku     #github用户名
   admin: Anriku
