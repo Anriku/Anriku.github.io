@@ -214,6 +214,91 @@ object BindingAdapter {
 
 
 
+# DataBindingComponent的使用
+
+前面我们在写BindingAdapter的时候，那些方法都是静态方法，但是如果@BindingAdapter的注解到了是普通的方法时。我们就需要使用DataBindingComponent了。
+
+**这个是DataBinding的Compiler自动生成的接口。当有控件使用了普通方法的BindingAdapter时候，就会在这个接口中生成get<含有这个BindinAdapter的类>的接口方法，然后在调用那些生产DataBinding的方法的时候就需要调用含有这个接口为参数的方法。自己实现接口在生成的方法中传回含有这个BindinAdapter的类。**
+
+
+
+说着可能不太好理解。这里个给个例子：
+
+首先，看一下含有普通方法上的BindinAdapter的类
+
+```kotlin
+class ComponentBindingAdapter {
+    private val prefixGenerate = PrefixGenerate()
+
+    @SuppressLint("SetTextI18n")
+    @BindingAdapter("component")
+    fun setString(textView: TextView, component: String) {
+        textView.text = component + prefixGenerate
+    }
+}
+```
+
+PrefixGenerate是一个自定生成一个随机数字的类：
+
+```kotlin
+class PrefixGenerate {
+
+    private val random = Random()
+
+    fun generate(): String {
+        return random.nextInt(100).toString()
+    }
+}
+```
+
+然后，在xml中使用对应的属性
+
+```kotlin
+<layout>
+
+    <data>
+    </data>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context=".databinding.MainActivity">
+
+        <TextView
+            android:id="@+id/tv_component"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:component="@{`Hello Anriku`}" />
+
+    </LinearLayout>
+</layout>
+```
+
+最后，在Activity中的调用。
+
+```kotlin
+class MainActivity : AppCompatActivity() {
+
+    private lateinit var mBinding: ActivityMainBinding
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        mBinding = DataBindingUtil.setContentView(this,
+                R.layout.activity_main) {
+            ComponentBindingAdapter()
+        }
+    }
+}
+
+```
+
+**在这里就需要调用DataBindingUtil含有DataBindingComponent的setContentView。然后，在实现的方法中返回了ComponentBindingAdapter类。**
+
+
+
 # 总结
 
 这篇博客给大家讲了下BindingAdapter相关的东西。
