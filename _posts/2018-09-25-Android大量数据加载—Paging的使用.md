@@ -25,13 +25,13 @@ Paging每次只会加载总数据的一小部分。因此它有下面的两个�
 
 # Paging主要的类介绍
 
-### PagedList
+#### PagedList
 
 这个类是用来存储加载的数据。PagedList中所需要的数据都是从下面要讲的DataSource中进行加载的。
 
 
 
-### DataSource
+#### DataSource
 
 DataSource顾名思义就是数据来源。这类提供加载所需的数据。也就是在这个类中进行数据的获取操作。数据源可以是DataBase也可以是服务器。
 
@@ -43,19 +43,19 @@ DataSource的三个子类：
 
 
 
-### DataSource.Factory
+#### DataSource.Factory
 
 这个接口的实现类主要是用来获取的DataSource的。
 
 
 
-### PagedListAdapter
+#### PagedListAdapter
 
 这个Adapter继承自RecyclerView.Adapter。如果要使用Paging，就需要让实现的RecyclerView的Adapter继承自PagedListAdapter。这个抽象类实现关于PagedList相关的东西。
 
 
 
-### LivePagedListBuilder
+#### LivePagedListBuilder
 
 通过这个类来生成对应的PagedList。
 
@@ -99,14 +99,12 @@ kapt 'com.github.bumptech.glide:compiler:4.8.0'
 
 # PositionalDataSource的使用
 
-首先是关于数据库的准备，内容很简单就不说了。
+#### 数据库部分
 
 ```kotlin
 @Entity
 data class Person(@PrimaryKey(autoGenerate = true) val id: Int, val name: String)
 ```
-
-
 
 ```kotlin
 @Dao
@@ -305,7 +303,7 @@ private val CHEESE_DATA = arrayListOf(
 
 
 
-下面我们构建一个ViewModel：
+#### DataSource、PagedList部分
 
 ```kotlin
 class PersonViewModel(application: Application) : AndroidViewModel(application) {
@@ -329,7 +327,7 @@ class PersonViewModel(application: Application) : AndroidViewModel(application) 
 
 
 
-然后，构建一个PagedListAdapter：
+#### PagedListAdapter部分
 
 ```kotlin
 class PersonRecAdapter(val context: Context) : PagedListAdapter<Person, PersonRecAdapter.PersonViewHolder>(diffCallBack) {
@@ -382,7 +380,11 @@ PagedListAdapter需要说的地方就是它接收一个**DiffUtil.ItemCallback**
 
 
 
-OK，最后来看看在Activity中的实现吧：
+**Adapter中布局很简单，这里节省代码就不列出来了。**
+
+
+
+#### Activity使用部分
 
 ```kotlin
 class MainActivity : AppCompatActivity() {
@@ -443,13 +445,13 @@ Activity的xml如下**(下面的讲解中的Actvity是一样的就不会再列�
 
 **这个DataSource用在N-1的item的内容中的某个信息指向N的item。相当于Item之间通过链表链着一样。**Github获取帐号的API就是典型的这样的API。因此这里以Github的API进行举例。
 
-**https://api.github.com/users?since=0?per_page=30**这是github获取帐号的api。**其中需要注意一点的就是如果一个IP地址对这个api使用超过一定的流量，会有段时间静止访问**
+下面是github获取帐号的api。**其中需要注意一点的就是如果一个IP地址对这个api使用超过一定的流量，会有段时间静止访问**
+
+[https://api.github.com/users?since=0?per_page=30](https://api.github.com/users?since=0?per_page=30)
 
 
 
-下面开是写代码了。
-
-GithubService:
+#### 网络请求部分：
 
 ```kotlin
 interface GitHubService {
@@ -459,7 +461,7 @@ interface GitHubService {
 }
 ```
 
-ApiGenerate:
+
 
 ```kotlin
 object ApiGenerate {
@@ -473,7 +475,7 @@ object ApiGenerate {
 }
 ```
 
-GithubAccount:
+
 
 ```kotlin
 data class GithubAccount(
@@ -499,7 +501,7 @@ data class GithubAccount(
 
 上面相信都没有问题。
 
-ExecuteOnceObserver:
+
 
 ```kotlin
 class ExecuteOnceObserver<T>(val onExecuteOnceNext: (T) -> Unit = {},
@@ -537,9 +539,11 @@ class ExecuteOnceObserver<T>(val onExecuteOnceNext: (T) -> Unit = {},
 
 
 
-**下面是重点**
 
-ByItemDataSource：
+
+#### DataSource、PagedList部分
+
+
 
 ```kotlin
 class ByItemDataSource : ItemKeyedDataSource<Long, GithubAccount>() {
@@ -592,7 +596,7 @@ ItemKeyedDataSource的子类需要实现loadInitial、loadAfter、loadBefore和g
 
 
 
-ByItemDataSourceFactory:
+
 
 ```kotlin
 class ByItemDataSourceFactory : DataSource.Factory<Long, GithubAccount>() {
@@ -604,7 +608,9 @@ class ByItemDataSourceFactory : DataSource.Factory<Long, GithubAccount>() {
 
 
 
-ByItemAdapter:
+#### PagedListAdapter部分
+
+
 
 ```kotlin
 class ByItemAdapter : PagedListAdapter<GithubAccount, ByItemAdapter.ByItemViewHolder>(diffCallback) {
@@ -646,9 +652,11 @@ class ByItemAdapter : PagedListAdapter<GithubAccount, ByItemAdapter.ByItemViewHo
 
 这个和前面讲PositionalDataSource处的Adapter重点是一样的这里就不重复了。
 
+**Adapter的代码很简单就不列出来了。**
 
 
-下面是在Activity中的使用
+
+#### Activity中的使用
 
 ```kotlin
 class ByItemActivity : AppCompatActivity() {
@@ -677,11 +685,13 @@ class ByItemActivity : AppCompatActivity() {
 
 这是知乎日报查看过往消息的api：
 
-**https://news-at.zhihu.com/api/4/news/before/20180823**
+[https://news-at.zhihu.com/api/4/news/before/20180823](https://news-at.zhihu.com/api/4/news/before/20180823)
 
 
 
-NewsService:
+#### 网络请求部分：
+
+
 
 ```kotlin
 interface NewsService {
@@ -690,7 +700,21 @@ interface NewsService {
 }
 ```
 
-News:
+
+
+```kotlin
+object ApiGenerate {
+
+    private val retrofit = Retrofit.Builder()
+            .baseUrl("https://news-at.zhihu.com/api/4/news/")
+            .addConverterFactory(GsonConverterFactory.create())
+            .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+            .build()
+    fun getNewsService(): NewsService = retrofit.create(NewsService::class.java)
+}
+```
+
+
 
 ```kotlin
 class News(var date: String = "",
@@ -706,7 +730,7 @@ class News(var date: String = "",
 }
 ```
 
-ByPageDataSource:
+
 
 ```kotlin
 class ByPageDataSource : PageKeyedDataSource<Long, News.StoriesBean>() {
@@ -745,11 +769,13 @@ class ByPageDataSource : PageKeyedDataSource<Long, News.StoriesBean>() {
 }
 ```
 
-对于PageKeyedDataSource的子类有三个要实现方法loadInitial、loadAfter和loadBefore。**其中三个方法的作用和ItemKeyedDataSource是一样的。只不过这里LoadInitialCallback、LoadCallback和ItemKeyedDataSource不一样。这个就请自己去它的不同api了。**
+对于PageKeyedDataSource的子类有三个要实现方法loadInitial、loadAfter和loadBefore。**其中三个方法的作用和ItemKeyedDataSource是一样的。只不过这里LoadInitialCallback、LoadCallback和ItemKeyedDataSource不一样。这个就请自己去它的不同api了。**其中ExecuteOnceObserver就是前面的一样的。
 
 
 
-ByPageDataSourceFactory:
+#### DataSource、PagedList部分
+
+
 
 ```kotlin
 class ByPageDataSourceFactory : DataSource.Factory<Long, News.StoriesBean>() {
@@ -758,8 +784,6 @@ class ByPageDataSourceFactory : DataSource.Factory<Long, News.StoriesBean>() {
 ```
 
 
-
-ByPageViewModel:
 
 ```kotlin
 class ByPageViewModel : ViewModel() {
@@ -774,7 +798,59 @@ class ByPageViewModel : ViewModel() {
 
 
 
-Activity中的使用
+#### PagedListAdapter部分
+
+```kotlin
+class ByPageAdapter : PagedListAdapter<News.StoriesBean, ByPageAdapter.ByItemViewHolder>(diffCallback) {
+
+
+    companion object {
+        val diffCallback = object : DiffUtil.ItemCallback<News.StoriesBean>() {
+            override fun areItemsTheSame(oldItem: News.StoriesBean, newItem: 
+                                         News.StoriesBean): Boolean {
+                return oldItem.id == newItem.id
+            }
+
+            override fun areContentsTheSame(oldItem: News.StoriesBean, newItem: 
+                                            News.StoriesBean): Boolean {
+                return oldItem == newItem
+            }
+
+        }
+    }
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ByItemViewHolder {
+        return 
+     ByItemViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.by_page_rec_item, parent, false))
+    }
+
+    override fun onBindViewHolder(holder: ByItemViewHolder, position: Int) {
+        holder.bindTo(getItem(position))
+    }
+
+    class ByItemViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+
+        private lateinit var imageView: ImageView
+        private lateinit var textView: TextView
+        
+        fun bindTo(story: News.StoriesBean?) {
+            imageView = itemView.findViewById(R.id.iv)
+            textView = itemView.findViewById(R.id.tv)
+
+            story?.let {
+                Glide.with(imageView.context).load(it.images!![0]).into(imageView)
+                textView.text = it.title
+            }
+        }
+    }
+}
+```
+
+**Adapter的布局很简单就不列出来了**
+
+
+
+#### Activity使用部分
 
 ```kotlin
 class ByPageActivity : AppCompatActivity() {
