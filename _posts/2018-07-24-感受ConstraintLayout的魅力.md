@@ -20,7 +20,7 @@ ConstraintLayout也出了一段时间了。最近好好的去了解了下这个�
 
 在这之前我们先来说明一下一些基本的概念：
 
-![ConstraintLayout基本概念说明](http://oyil5gdc8.bkt.clouddn.com/ConstraintLayout%E6%A6%82%E5%BF%B5%E8%AF%B4%E6%98%8E.png)
+![ConstraintLayout基本概念说明](https://images-1254261164.cos.ap-chengdu.myqcloud.com/2018-11-08-164112.png)
 
 
 
@@ -41,7 +41,7 @@ ConstraintLayout也出了一段时间了。最近好好的去了解了下这个�
 
 下面这张图就是通过位置控制得到一个布局：
 
-![ConstraintLayout位置控制示例](http://oyil5gdc8.bkt.clouddn.com/ContraintLayout%E4%BD%8D%E7%BD%AE%E6%8E%A7%E5%88%B6%E8%AF%B4%E6%98%8E.png)
+![ConstraintLayout位置控制示例](https://images-1254261164.cos.ap-chengdu.myqcloud.com/2018-11-08-164113.png)
 
 下面是xml布局：
 
@@ -97,9 +97,9 @@ ConstraintLayout也出了一段时间了。最近好好的去了解了下这个�
 
 # ConstraintLayout的margin控制
 
-![ConstraintLayout的margin控制](http://oyil5gdc8.bkt.clouddn.com/ConstraintLayout%E7%9A%84margin%E6%8E%A7%E5%88%B6.png)
+![ConstraintLayout的margin控制](https://images-1254261164.cos.ap-chengdu.myqcloud.com/2018-11-08-164114.png)
 
-![ConstraintLayout的goneMargin控制](http://oyil5gdc8.bkt.clouddn.com/ConstraintLayout%E7%9A%84goneMargin%E6%8E%A7%E5%88%B6.png)
+![ConstraintLayout的goneMargin控制](https://images-1254261164.cos.ap-chengdu.myqcloud.com/2018-11-08-164115.png)
 
 > 上面两张图。**第二张是第一张的Button1的可见性变为了gone的效果。Button2与父布局左边的边距是没有变的。这里都是200dp。**
 >
@@ -163,7 +163,7 @@ Now！Show me the code:
 
 下面是我们的黄金比例图：
 
-![ConstraintLayout的比例控制](http://oyil5gdc8.bkt.clouddn.com/ConstraintLayout%E6%AF%94%E4%BE%8B%E6%8E%A7%E5%88%B6.png)
+![ConstraintLayout的比例控制](https://images-1254261164.cos.ap-chengdu.myqcloud.com/2018-11-08-164116.png)
 
 
 
@@ -200,7 +200,7 @@ Code在这里：
 
 这里我直接拿官方的图来做说明：
 
-![ConstraintLayout的圆形位置控制](http://oyil5gdc8.bkt.clouddn.com/ConstraintLayout%E5%9C%86%E5%BD%A2%E4%BD%8D%E7%BD%AE%E6%8E%A7%E5%88%B6.png)
+![ConstraintLayout的圆形位置控制](https://images-1254261164.cos.ap-chengdu.myqcloud.com/2018-11-08-164120.png)
 
 这里的两个以两个控件的中点作为圆心来进行旋转。一共有**三个属性**用来实现这样的位置控制：
 
@@ -212,7 +212,7 @@ Code在这里：
 
 下面是Button2相对Button旋转45度并且它们中点间的距离为80dp的效果图：
 
-![ConstraintLayout的圆形位置控制](http://oyil5gdc8.bkt.clouddn.com/ConstraintLayout%E7%9A%84%E5%9C%86%E5%BD%A2%E4%BD%8D%E7%BD%AE%E6%8E%A7%E5%88%B6.png)
+![ConstraintLayout的圆形位置控制](https://images-1254261164.cos.ap-chengdu.myqcloud.com/2018-11-08-164121.png)
 
 
 
@@ -321,7 +321,7 @@ layout_constraintDimesionRatio
 
 前三个大小控制这里就不举例子了比较简单。这里对宽高比例控制去个例子如下：
 
-![ConstraintLayout比例控制](http://oyil5gdc8.bkt.clouddn.com/ConstraintLayout%E7%9A%84%E6%AF%94%E4%BE%8B%E6%8E%A7%E5%88%B6.png)
+![ConstraintLayout比例控制](https://images-1254261164.cos.ap-chengdu.myqcloud.com/2018-11-08-164122.png)
 
 
 
@@ -369,7 +369,7 @@ layout_constraintHorizontal_chainStyle
 
 下面是效果图：
 
-![没有链头的布局链](http://oyil5gdc8.bkt.clouddn.com/ConstraintLayout%E6%B2%A1%E6%9C%89%E9%93%BE%E5%A4%B4%E7%9A%84%E5%B8%83%E5%B1%80%E9%93%BE.png)
+![没有链头的布局链](https://images-1254261164.cos.ap-chengdu.myqcloud.com/2018-11-08-164128.png)
 
 
 
@@ -418,7 +418,7 @@ Code如下：
 
 效果图如下：
 
-![Packed Chain](http://oyil5gdc8.bkt.clouddn.com/ConstraintLayout%E7%9A%84Packed%20Chain.png)
+![Packed Chain](https://images-1254261164.cos.ap-chengdu.myqcloud.com/2018-11-08-164130.png)
 
 Code就不给了就是Speread Chain的**layout_contraintVertical_chainStyle的属性值改为packed**
 
@@ -428,7 +428,7 @@ Code就不给了就是Speread Chain的**layout_contraintVertical_chainStyle的�
 
 效果如下：
 
-![Spread Inside Chain](http://oyil5gdc8.bkt.clouddn.com/ConstraintLayout%E7%9A%84Spread%20Inside%20Chain.png)
+![Spread Inside Chain](https://images-1254261164.cos.ap-chengdu.myqcloud.com/2018-11-08-164131.png)
 
 
 
@@ -438,7 +438,7 @@ Code就不给了就是Speread Chain的**layout_contraintVertical_chainStyle的�
 
 效果图如下：
 
-![Packed Chain with Bias](http://oyil5gdc8.bkt.clouddn.com/ConstraintLayout%E7%9A%84Packed%20Chain%20with%20Bias.png)
+![Packed Chain with Bias](https://images-1254261164.cos.ap-chengdu.myqcloud.com/2018-11-08-164132.png)
 
 这个效果的设置也很简单，**就是前面提到的Packed Chain在链头加上`layout_constraintVertical_bias`这个属性来进行比例的设置**
 
@@ -450,7 +450,7 @@ Code就不给了就是Speread Chain的**layout_contraintVertical_chainStyle的�
 
 效果图如下：
 
-![ConstraintLayout的占比链](http://oyil5gdc8.bkt.clouddn.com/ConstraintLayout%E5%8D%A0%E6%AF%94%E9%93%BE.png)
+![ConstraintLayout的占比链](https://images-1254261164.cos.ap-chengdu.myqcloud.com/2018-11-08-164133.png)
 
 
 

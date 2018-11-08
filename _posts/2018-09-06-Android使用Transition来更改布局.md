@@ -32,7 +32,7 @@ tags:
 
 这里直接拿官方的来进行说明：
 
-![transition](http://oyil5gdc8.bkt.clouddn.com/transitions_diagram.png)
+![transition](https://images-1254261164.cos.ap-chengdu.myqcloud.com/2018-11-08-164147.png)
 
 通过这张图可以看到，整个过程由Transition Manager通过Transition将Starting Scene转换为Ending Scene。
 

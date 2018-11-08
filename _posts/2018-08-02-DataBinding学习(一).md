@@ -21,7 +21,7 @@ tags:
 
 一般情况下、我们直接通过下图来进行DataBinding的启用。当前还可以在gradle.properties中做一些配置。这里就不用了。
 
-![启用DataBinding](http://oyil5gdc8.bkt.clouddn.com/%E5%90%AF%E7%94%A8DataBinding.png)
+![启用DataBinding](https://images-1254261164.cos.ap-chengdu.myqcloud.com/2018-11-08-164107.png)
 
 
 

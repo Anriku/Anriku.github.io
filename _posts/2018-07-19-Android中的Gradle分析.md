@@ -25,7 +25,7 @@ Gradle是我们在Android开发中用来构建应用的工具。相信做Android
 
 首先，我们创建了一个叫做GradleTest的项目。下面的是文件架构以及标出了我们即将分析的文件,在Gradle脚本中没有被标注的不是那么重要最后一笔带过：
 
-![gradle(1)](http://ov80qs5d9.bkt.clouddn.com/gradle%281%29.png)
+![gradle(1)](https://images-1254261164.cos.ap-chengdu.myqcloud.com/2018-11-08-164153.png)
 
 #### 1. build.gradle(Project: GradleTest)
 
@@ -51,7 +51,7 @@ Gradle是我们在Android开发中用来构建应用的工具。相信做Android
 
 **下面给出一张各个文件在Project视图下的具体位置:**
 
-![gradle(7)](http://ov80qs5d9.bkt.clouddn.com/gradle%287%29.png)
+![gradle(7)](https://images-1254261164.cos.ap-chengdu.myqcloud.com/2018-11-08-164154.png)
 
 
 
@@ -63,13 +63,13 @@ Gradle是我们在Android开发中用来构建应用的工具。相信做Android
 
 上面四个重要文件中先对这个简单的文件做一下分析。下面是新建项目中该文件的截图：
 
-![gradle(2)](http://ov80qs5d9.bkt.clouddn.com/gradle%282%29.png)
+![gradle(2)](https://images-1254261164.cos.ap-chengdu.myqcloud.com/2018-11-08-164155.png)
 
 
 
 * 前面的四行表面的是第一运行的时候gradle下载并且存储的位置。默认是存储在用户目录下的.gradle/wrapper/dists目录中的。
 
-![gradle(3)](http://ov80qs5d9.bkt.clouddn.com/gradle%283%29.png)
+![gradle(3)](https://images-1254261164.cos.ap-chengdu.myqcloud.com/2018-11-08-164156.png)
 
 
 
@@ -81,7 +81,7 @@ Gradle是我们在Android开发中用来构建应用的工具。相信做Android
 
 这个文件是对整个项目的构造做配置的。下面是新创建的项目的该文件的截图：
 
-![gradle(4)](http://ov80qs5d9.bkt.clouddn.com/gradle%285%29.png)
+![gradle(4)](https://images-1254261164.cos.ap-chengdu.myqcloud.com/2018-11-08-164157.png)
 
 
 
@@ -102,7 +102,7 @@ Gradle是我们在Android开发中用来构建应用的工具。相信做Android
 
 该文件是对app这个模块进行配置的。该文件的截图如下：
 
-![gradle(6)](http://ov80qs5d9.bkt.clouddn.com/gradle%286%29.png)
+![gradle(6)](https://images-1254261164.cos.ap-chengdu.myqcloud.com/2018-11-08-164159.png)
 
 * apply plugin是在该模块中应用的插件。这个插件与前面的根项目下的gradle中buildscript声明的插件相关
 * 后面android块、dependences块都是应用的插件添加的配置、依赖。当然还可以添加自定义task

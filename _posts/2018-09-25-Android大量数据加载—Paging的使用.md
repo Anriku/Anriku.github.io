@@ -875,7 +875,7 @@ class ByPageActivity : AppCompatActivity() {
 
 到此为止围绕着三个DataSource都已将讲完了。经过大家的代码实践，这里在给大家贴上官方的一张图。相信大家不会对其中的关系不会太难理解：
 
-![Paging 原理](http://oyil5gdc8.bkt.clouddn.com/511a702ae4af43cd.png)
+![Paging 原理](https://images-1254261164.cos.ap-chengdu.myqcloud.com/2018-11-08-164206.png)
 
 
 

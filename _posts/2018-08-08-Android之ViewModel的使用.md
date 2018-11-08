@@ -17,7 +17,7 @@ Android中的ViewModel是一个可以用来存储UI相关的数据的类。ViewM
 
 这里拿官方的一张图：
 
-![ViewModel-Lifecycle](http://oyil5gdc8.bkt.clouddn.com/viewmodel-lifecycle.png)
+![ViewModel-Lifecycle](https://images-1254261164.cos.ap-chengdu.myqcloud.com/2018-11-08-164254.png)
 
 **这张图是在在没任何设置屏幕发生转换Activity的生命周期变化和ViewModel的生命周期。可以看重建的时候，ViewModel中的数据是不会被清理的。**
 
