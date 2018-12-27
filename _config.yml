@@ -3,7 +3,7 @@ title: Anriku Blog
 SEOTitle: Anriku's Blog
 header-img: img/main_page.png
 email: anrikuwen@gmail.com
-description: "description"
+description: "An Android Developer"
 keyword: "Google,Android,幽默"
 url: "http://Anriku.github.io"          # your host, for absolute URL
 baseurl: ""      # for example, '/blog' if your blog hosted on 'host/blog'
@@ -98,17 +98,8 @@ service-worker: true
 
 # Friends
 friends: [
-#     {
-#         title: "WY",
-#         href: "http://zhengwuyang.com"
-#     },{
+#{
 #         title: "简书·BY",
 #         href: "http://www.jianshu.com/u/e71990ada2fd"
-#     },{
-#         title: "Apple",
-#         href: "https://apple.com"
-#     },{
-#         title: "Apple Developer",
-#         href: "https://developer.apple.com/"
 #     }
 ]
