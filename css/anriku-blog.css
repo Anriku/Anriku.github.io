@@ -33,7 +33,7 @@
 
 .sidebar-container a:hover,
 .sidebar-container a:active {
-  color: #0085a1 !important;
+  color: #0085A1 !important;
 }
 
 .sidebar-container .tags a {
@@ -42,7 +42,7 @@
 
 .sidebar-container .tags a:hover,
 .sidebar-container .tags a:active {
-  border-color: #0085a1;
+  border-color: #0085A1;
 }
 
 .sidebar-container .short-about img {
@@ -121,30 +121,40 @@
   text-overflow: ellipsis;
 }
 
-.side-catalog .catalog-body .h1_nav,
-.side-catalog .catalog-body .h2_nav,
-.side-catalog .catalog-body .h3_nav {
+.side-catalog .catalog-body .h1_nav {
   margin-left: 0;
   font-size: 13px;
   font-weight: bold;
 }
 
-.side-catalog .catalog-body .h4_nav,
-.side-catalog .catalog-body .h5_nav,
-.side-catalog .catalog-body .h6_nav {
-  margin-left: 10px;
-  font-size: 12px;
+.side-catalog .catalog-body .h1_nav>a {
+  color: #546e7a !important;
 }
 
-.side-catalog .catalog-body .h4_nav a,
-.side-catalog .catalog-body .h5_nav a,
-.side-catalog .catalog-body .h6_nav a {
+.side-catalog .catalog-body .h2_nav {
+  margin-left: 8px;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.side-catalog .catalog-body .h2_nav>a {
+  color: #607D8B !important;
+}
+
+.side-catalog .catalog-body .h3_nav {
+  margin-left: 16px;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.side-catalog .catalog-body .h3_nav>a {
+  color: #78909c !important;
   max-width: 170px;
 }
 
 .side-catalog .catalog-body .active {
   border-radius: 4px;
-  background-color: #F5F5F5;
+  background-color: #f5f5f5;
 }
 
 .side-catalog .catalog-body .active a {
@@ -158,10 +168,6 @@
 }
 
 body {
-  /* Hux learn from
-     *     TypeIsBeautiful,
-     *     [This Post](http://zhuanlan.zhihu.com/ibuick/20186806) etc.
-     */
   font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Arial", "PingFang SC", "Hiragino Sans GB", "STHeiti", "Microsoft YaHei", "Microsoft JhengHei", "Source Han Sans SC", "Noto Sans CJK SC", "Source Han Sans CN", "Noto Sans SC", "Source Han Sans TC", "Noto Sans CJK TC", "WenQuanYi Micro Hei", SimSun, sans-serif;
   line-height: 1.7;
   font-size: 16px;
@@ -179,10 +185,6 @@ h3,
 h4,
 h5,
 h6 {
-  /* Hux learn from
-     *     TypeIsBeautiful,
-     *     [This Post](http://zhuanlan.zhihu.com/ibuick/20186806) etc.
-     */
   font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Arial", "PingFang SC", "Hiragino Sans GB", "STHeiti", "Microsoft YaHei", "Microsoft JhengHei", "Source Han Sans SC", "Noto Sans CJK SC", "Source Han Sans CN", "Noto Sans SC", "Source Han Sans TC", "Noto Sans CJK TC", "WenQuanYi Micro Hei", SimSun, sans-serif;
   line-height: 1.7;
   line-height: 1.1;
@@ -199,7 +201,7 @@ a {
 
 a:hover,
 a:focus {
-  color: #0085a1;
+  color: #0085A1;
 }
 
 a img:hover,
@@ -284,7 +286,7 @@ pre code {
 
 .post-container a:hover,
 .post-container a:focus {
-  color: #0085a1;
+  color: #0085A1;
 }
 
 .post-container h1,
@@ -399,7 +401,10 @@ pre code {
     width: 170px;
   }
 
-
+  /**
+	 * Animation
+	 * anrikublog-Navbar using genuine Material Design Animation
+	 */
   #anrikublog_navbar {
     /**
 		 * Sharable code and 'out' function
@@ -425,37 +430,37 @@ pre code {
     height: 0px;
     transform: scaleY(0);
     transform-origin: top right;
-    transition: transform 400ms cubic-bezier(0.32, 1, 0.23, 1) 0ms;
+    transition: all 400ms cubic-bezier(0.32, 1, 0.23, 1) 0ms;
     -webkit-transform: scaleY(0);
     -webkit-transform-origin: top right;
-    -webkit-transition: -webkit-transform 400ms cubic-bezier(0.32, 1, 0.23, 1) 0ms;
+    -webkit-transition: all 400ms cubic-bezier(0.32, 1, 0.23, 1) 0ms;
   }
 
   #anrikublog_navbar li {
     opacity: 0;
-    transition: opacity 100ms cubic-bezier(0.23, 1, 0.32, 1) 0ms;
-    -webkit-transition: opacity 100ms cubic-bezier(0.23, 1, 0.32, 1) 0ms;
+    transition: all 100ms cubic-bezier(0.23, 1, 0.32, 1) 0ms;
+    -webkit-transition: all 100ms cubic-bezier(0.23, 1, 0.32, 1) 0ms;
   }
 
   #anrikublog_navbar.in {
     transform: scaleX(1);
     -webkit-transform: scaleX(1);
     opacity: 1;
-    transition: all 250ms cubic-bezier(0.23, 1, 0.32, 1) 0ms;
-    -webkit-transition: all 250ms cubic-bezier(0.23, 1, 0.32, 1) 0ms;
+    transition: all 800ms cubic-bezier(0.23, 1, 0.32, 1) 0ms;
+    -webkit-transition: all 800ms cubic-bezier(0.23, 1, 0.32, 1) 0ms;
   }
 
   #anrikublog_navbar.in .navbar-collapse {
     transform: scaleY(1);
     -webkit-transform: scaleY(1);
-    transition: transform 500ms cubic-bezier(0.23, 1, 0.32, 1);
-    -webkit-transition: -webkit-transform 500ms cubic-bezier(0.23, 1, 0.32, 1);
+    transition: all 800ms cubic-bezier(0.23, 1, 0.32, 1) 0ms;
+    -webkit-transition: all 800ms cubic-bezier(0.23, 1, 0.32, 1) 0ms;
   }
 
   #anrikublog_navbar.in li {
     opacity: 1;
-    transition: opacity 450ms cubic-bezier(0.23, 1, 0.32, 1) 205ms;
-    -webkit-transition: opacity 450ms cubic-bezier(0.23, 1, 0.32, 1) 205ms;
+    transition: all 800ms cubic-bezier(0.23, 1, 0.32, 1) 0ms;
+    -webkit-transition: all 800ms cubic-bezier(0.23, 1, 0.32, 1) 0ms;
   }
 }
 
@@ -467,10 +472,9 @@ pre code {
   left: 0;
   width: 100%;
   z-index: 3;
-  /* Hux learn from
-     *     TypeIsBeautiful,
-     *     [This Post](http://zhuanlan.zhihu.com/ibuick/20186806) etc.
-     */
+  -webkit-transition: background-color 1s;
+  -moz-transition: background-color 1s;
+  transition: background-color 1s;
   font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Arial", "PingFang SC", "Hiragino Sans GB", "STHeiti", "Microsoft YaHei", "Microsoft JhengHei", "Source Han Sans SC", "Noto Sans CJK SC", "Source Han Sans CN", "Noto Sans SC", "Source Han Sans TC", "Noto Sans CJK TC", "WenQuanYi Micro Hei", SimSun, sans-serif;
   line-height: 1.7;
 }
@@ -536,9 +540,9 @@ pre code {
 
 @media only screen and (min-width: 1170px) {
   .navbar-custom {
-    -webkit-transition: background-color 0.3s;
-    -moz-transition: background-color 0.3s;
-    transition: background-color 0.3s;
+    -webkit-transition: background-color 0.6s;
+    -moz-transition: background-color 0.6s;
+    transition: background-color 0.6s;
     /* Force Hardware Acceleration in WebKit */
     -webkit-transform: translate3d(0, 0, 0);
     -moz-transform: translate3d(0, 0, 0);
@@ -566,7 +570,7 @@ pre code {
 
   .navbar-custom.is-fixed .navbar-brand:hover,
   .navbar-custom.is-fixed .navbar-brand:focus {
-    color: #0085a1;
+    color: #0085A1;
   }
 
   .navbar-custom.is-fixed .nav li a {
@@ -575,7 +579,7 @@ pre code {
 
   .navbar-custom.is-fixed .nav li a:hover,
   .navbar-custom.is-fixed .nav li a:focus {
-    color: #0085a1;
+    color: #0085A1;
   }
 
   .navbar-custom.is-visible {
@@ -611,7 +615,7 @@ pre code {
 .intro-header .post-heading,
 .intro-header .page-heading {
   padding: 85px 0 55px;
-  color: white;
+  color: rgba(255, 255, 255, 0.8);
 }
 
 @media only screen and (min-width: 768px) {
@@ -646,10 +650,6 @@ pre code {
 
 .intro-header .site-heading .subheading,
 .intro-header .page-heading .subheading {
-  /* Hux learn from
-     *     TypeIsBeautiful,
-     *     [This Post](http://zhuanlan.zhihu.com/ibuick/20186806) etc.
-     */
   font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Arial", "PingFang SC", "Hiragino Sans GB", "STHeiti", "Microsoft YaHei", "Microsoft JhengHei", "Source Han Sans SC", "Noto Sans CJK SC", "Source Han Sans CN", "Noto Sans SC", "Source Han Sans TC", "Noto Sans CJK TC", "WenQuanYi Micro Hei", SimSun, sans-serif;
   line-height: 1.7;
   font-size: 18px;
@@ -679,10 +679,6 @@ pre code {
 }
 
 .intro-header .post-heading .subheading {
-  /* Hux learn from
-     *     TypeIsBeautiful,
-     *     [This Post](http://zhuanlan.zhihu.com/ibuick/20186806) etc.
-     */
   font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Arial", "PingFang SC", "Hiragino Sans GB", "STHeiti", "Microsoft YaHei", "Microsoft JhengHei", "Source Han Sans SC", "Noto Sans CJK SC", "Source Han Sans CN", "Noto Sans SC", "Source Han Sans TC", "Noto Sans CJK TC", "WenQuanYi Micro Hei", SimSun, sans-serif;
   line-height: 1.7;
   font-size: 17px;
@@ -724,7 +720,7 @@ pre code {
 .post-preview>a:hover,
 .post-preview>a:focus {
   text-decoration: none;
-  color: #0085a1;
+  color: #0085A1;
 }
 
 .post-preview>a>.post-title {
@@ -757,7 +753,7 @@ pre code {
 
 .post-preview>.post-meta>a:hover,
 .post-preview>.post-meta>a:focus {
-  color: #0085a1;
+  color: #0085A1;
   text-decoration: underline;
 }
 
@@ -784,7 +780,7 @@ pre code {
 }
 
 .post-content-preview:hover {
-  color: #0085a1;
+  color: #0085A1;
 }
 
 @media only screen and (min-width: 768px) {
@@ -832,7 +828,7 @@ footer .copyright a {
 
 footer .copyright a:hover,
 footer .copyright a:focus {
-  color: #0085a1;
+  color: #0085A1;
 }
 
 .floating-label-form-group {
@@ -840,7 +836,7 @@ footer .copyright a:focus {
   position: relative;
   margin-bottom: 0;
   padding-bottom: 0.5em;
-  border-bottom: 1px solid #eeeeee;
+  border-bottom: 1px solid #eee;
 }
 
 .floating-label-form-group input,
@@ -865,18 +861,16 @@ footer .copyright a:focus {
   margin: 0;
   font-size: 0.85em;
   line-height: 1.764705882em;
-  vertical-align: middle;
-  vertical-align: baseline;
   opacity: 0;
-  -webkit-transition: top 0.3s ease, opacity 0.3s ease;
-  -moz-transition: top 0.3s ease, opacity 0.3s ease;
-  -ms-transition: top 0.3s ease, opacity 0.3s ease;
-  transition: top 0.3s ease, opacity 0.3s ease;
+  -webkit-transition: top 0.6s ease, opacity 0.6s ease;
+  -moz-transition: top 0.6s ease, opacity 0.6s ease;
+  -ms-transition: top 0.6s ease, opacity 0.6s ease;
+  transition: top 0.6s ease, opacity 0.6s ease;
 }
 
 .floating-label-form-group::not(:first-child) {
   padding-left: 14px;
-  border-left: 1px solid #eeeeee;
+  border-left: 1px solid #eee;
 }
 
 .floating-label-form-group-with-value label {
@@ -885,18 +879,14 @@ footer .copyright a:focus {
 }
 
 .floating-label-form-group-with-focus label {
-  color: #0085a1;
+  color: #0085A1;
 }
 
 form .row:first-child .floating-label-form-group {
-  border-top: 1px solid #eeeeee;
+  border-top: 1px solid #eee;
 }
 
 .btn {
-  /* Hux learn from
-     *     TypeIsBeautiful,
-     *     [This Post](http://zhuanlan.zhihu.com/ibuick/20186806) etc.
-     */
   font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Arial", "PingFang SC", "Hiragino Sans GB", "STHeiti", "Microsoft YaHei", "Microsoft JhengHei", "Source Han Sans SC", "Noto Sans CJK SC", "Source Han Sans CN", "Noto Sans SC", "Source Han Sans TC", "Noto Sans CJK TC", "WenQuanYi Micro Hei", SimSun, sans-serif;
   line-height: 1.7;
   text-transform: uppercase;
@@ -914,8 +904,8 @@ form .row:first-child .floating-label-form-group {
 
 .btn-default:hover,
 .btn-default:focus {
-  background-color: #0085a1;
-  border: 1px solid #0085a1;
+  background-color: #0085A1;
+  border: 1px solid #0085A1;
   color: white;
 }
 
@@ -926,10 +916,6 @@ form .row:first-child .floating-label-form-group {
 
 .pager li>a,
 .pager li>span {
-  /* Hux learn from
-     *     TypeIsBeautiful,
-     *     [This Post](http://zhuanlan.zhihu.com/ibuick/20186806) etc.
-     */
   font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Arial", "PingFang SC", "Hiragino Sans GB", "STHeiti", "Microsoft YaHei", "Microsoft JhengHei", "Source Han Sans SC", "Noto Sans CJK SC", "Source Han Sans CN", "Noto Sans SC", "Source Han Sans TC", "Noto Sans CJK TC", "WenQuanYi Micro Hei", SimSun, sans-serif;
   line-height: 1.7;
   text-transform: uppercase;
@@ -939,6 +925,8 @@ form .row:first-child .floating-label-form-group {
   padding: 10px;
   background-color: white;
   border-radius: 0;
+  transition: all 500ms linear 0ms;
+  -webkit-transition: all 500ms linear 0ms;
 }
 
 @media only screen and (min-width: 768px) {
@@ -951,14 +939,20 @@ form .row:first-child .floating-label-form-group {
 }
 
 .pager li>a {
+  border-radius: 50px;
   color: #404040;
+}
+
+.pager li>a>span {
+  transition: all 500ms linear 0ms;
+  -webkit-transition: all 500ms linear 0ms;
 }
 
 .pager li>a:hover,
 .pager li>a:focus {
   color: white;
-  background-color: #0085a1;
-  border: 1px solid #0085a1;
+  background-color: lightskyblue;
+  border: 1px solid lightskyblue;
 }
 
 .pager li>a:hover>span,
@@ -978,13 +972,13 @@ form .row:first-child .floating-label-form-group {
 ::-moz-selection {
   color: white;
   text-shadow: none;
-  background: #0085a1;
+  background: #0085A1;
 }
 
 ::selection {
   color: white;
   text-shadow: none;
-  background: #0085a1;
+  background: #0085A1;
 }
 
 img::selection {
@@ -1014,6 +1008,8 @@ img::-moz-selection {
   text-decoration: none;
   margin: 0 1px;
   margin-bottom: 6px;
+  transition: all 600s linear 0ms;
+  -webkit-transition: all 600ms linear 0ms;
 }
 
 .tags a:hover,
@@ -1021,8 +1017,8 @@ img::-moz-selection {
 .tags a:active,
 .tags .tag:active {
   color: white;
-  border-color: white;
-  background-color: rgba(255, 255, 255, 0.4);
+  border-color: rgba(3, 155, 229, 0.8);
+  background-color: rgba(129, 212, 250, 0.5);
   text-decoration: none;
 }
 
@@ -1055,7 +1051,7 @@ img::-moz-selection {
   line-height: 28px;
   margin: 0 2px;
   margin-bottom: 8px;
-  background: #D6D6D6;
+  background: #d6d6d6;
 }
 
 #tag_cloud a:hover,
@@ -1103,10 +1099,6 @@ img::-moz-selection {
 
 .one-tag-list .tag-text {
   font-weight: 200;
-  /* Hux learn from
-     *     TypeIsBeautiful,
-     *     [This Post](http://zhuanlan.zhihu.com/ibuick/20186806) etc.
-     */
   font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Arial", "PingFang SC", "Hiragino Sans GB", "STHeiti", "Microsoft YaHei", "Microsoft JhengHei", "Source Han Sans SC", "Noto Sans CJK SC", "Source Han Sans CN", "Noto Sans SC", "Source Han Sans TC", "Noto Sans CJK TC", "WenQuanYi Micro Hei", SimSun, sans-serif;
   line-height: 1.7;
 }
@@ -1235,7 +1227,7 @@ img::-moz-selection {
 }
 
 .comment #ds-thread #ds-reset .ds-post-button:hover {
-  background: #eeeeee;
+  background: #eee;
 }
 
 #ds-smilies-tooltip ul.ds-smilies-tabs li a {

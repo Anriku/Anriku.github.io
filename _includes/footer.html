@@ -14,7 +14,7 @@
                         </a>
                     </li>
                     {% endif %}
-                    <!-- add jianshu add target = "_blank" to <a> by BY -->
+                    <!-- add jianshu -->
                     {% if site.jianshu_username %}
                     <li>
                         <a target="_blank" href="https://www.jianshu.com/u/{{ site.jianshu_username }}">
@@ -25,6 +25,7 @@
                         </a>
                     </li>
                     {% endif %}
+                    <!-- add twitter -->
                     {% if site.twitter_username %}
                     <li>
                         <a href="https://twitter.com/{{ site.twitter_username }}">
@@ -35,8 +36,7 @@
                         </a>
                     </li>
                     {% endif %}
-
-                    <!-- add Weibo, Zhihu by Hux, add target = "_blank" to <a> by Hux -->
+                    <!-- add zhihu -->
                     {% if site.zhihu_username %}
                     <li>
                         <a target="_blank" href="https://www.zhihu.com/people/{{ site.zhihu_username }}">
@@ -47,18 +47,7 @@
                         </a>
                     </li>
                     {% endif %}
-                    {% if site.weibo_username %}
-                    <li>
-                        <a target="_blank" href="http://weibo.com/{{ site.weibo_username }}">
-                            <span class="fa-stack fa-lg">
-                                <i class="fa fa-circle fa-stack-2x"></i>
-                                <i class="fa fa-weibo fa-stack-1x fa-inverse"></i>
-                            </span>
-                        </a>
-                    </li>
-                    {% endif %}
-
-
+                    <!-- add facebook -->
                     {% if site.facebook_username %}
                     <li>
                         <a target="_blank" href="https://www.facebook.com/{{ site.facebook_username }}">
@@ -69,22 +58,13 @@
                         </a>
                     </li>
                     {% endif %}
+                    <!-- add github -->
                     {% if site.github_username %}
                     <li>
                         <a target="_blank" href="https://github.com/{{ site.github_username }}">
                             <span class="fa-stack fa-lg">
                                 <i class="fa fa-circle fa-stack-2x"></i>
                                 <i class="fa fa-github fa-stack-1x fa-inverse"></i>
-                            </span>
-                        </a>
-                    </li>
-                    {% endif %}
-                    {% if site.linkedin_username %}
-                    <li>
-                        <a target="_blank" href="https://www.linkedin.com/in/{{ site.linkedin_username }}">
-                            <span class="fa-stack fa-lg">
-                                <i class="fa fa-circle fa-stack-2x"></i>
-                                <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
                             </span>
                         </a>
                     </li>
@@ -110,21 +90,24 @@
 <script src="{{ "/js/bootstrap.min.js " | prepend: site.baseurl }}"></script>
 
 <!-- Custom Theme JavaScript -->
-<script src="{{ "/js/hux-blog.min.js " | prepend: site.baseurl }}"></script>
+<script src="{{ "/js/anriku-blog.min.js " | prepend: site.baseurl }}"></script>
 
 <!-- Service Worker -->
 {% if site.service-worker %}
 <script type="text/javascript">
     if (navigator.serviceWorker) {
-        // For security reasons, a service worker can only control the pages that are in the same directory level or below it. That's why we put sw.js at ROOT level.
-        navigator.serviceWorker
-            .register('/sw.js')
-            .then((registration) => {
-                console.log('Service Worker Registered. ', registration)
-            })
-            .catch((error) => {
-                console.log('ServiceWorker registration failed: ', error)
-            })
+        // 为了确保用户的首次访问的体验将Server Worker的注册放在第一个网页加载后
+        // To ensure the user's experience, let the service worker registion after the first web page is loaded.
+        window.addEventListener("load", function () {
+            navigator.serviceWorker
+                .register('/sw.js')
+                .then((registration) => {
+                    console.log('Service Worker Registered. ', registration)
+                })
+                .catch((error) => {
+                    console.log('ServiceWorker registration failed: ', error)
+                })
+        });
     }
 </script>
 {% endif %}
@@ -146,26 +129,6 @@
         s.parentNode.insertBefore(o, s);
     }
 </script>
-
-<!-- 
-     Because of the native support for backtick-style fenced code blocks 
-     right within the Markdown is landed in Github Pages, 
-     From V1.6, There is no need for Highlight.js, 
-     so Huxblog drops it officially.
-
-     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0  
-     - https://help.github.com/articles/creating-and-highlighting-code-blocks/ 
-     - https://github.com/jneen/rouge/wiki/list-of-supported-languages-and-lexers   
--->
-<!--
-    <script>
-        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
-            hljs.initHighlightingOnLoad();
-        })
-    </script>
-    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
--->
-
 
 <!-- jquery.tagcloud.js -->
 <script>
@@ -247,6 +210,7 @@
         a = P.find('h1,h2,h3,h4,h5,h6');
         a.each(function () {
             n = $(this).prop('tagName').toLowerCase();
+            console.log("tagName: " + n);
             i = "#" + $(this).prop('id');
             t = $(this).text();
             c = $('<a href="' + i + '" rel="nofollow">' + t + '</a>');

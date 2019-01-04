@@ -2,14 +2,9 @@
 layout: default
 ---
 
-<!-- Image to hack wechat -->
-<!-- <img src="/img/icon_wechat.png" width="0" height="0"> -->
-<!-- <img src="{{ site.baseurl }}/{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %}" width="0" height="0"> -->
-
 <!-- Post Header -->
 <style type="text/css">
     header.intro-header {
-        /*background-image: url('{{ site.baseurl }}/{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %}')*/
         height: 500px;
         overflow: hidden;
     }
@@ -21,9 +16,7 @@ layout: default
     }
 
     /* Override Nav Style */
-        {
-        % if page.navcolor=="invert"%
-    }
+    {% if page.navcolor == "invert" %}
 
     .navbar-custom .nav li a,
     .navbar-custom .nav li a:hover,
@@ -36,9 +29,7 @@ layout: default
         background-color: #777;
     }
 
-        {
-        % endif %
-    }
+    {% endif %}
 </style>
 <header class="intro-header">
     <iframe src="{{page.iframe}}" />

@@ -18,14 +18,11 @@ sidebar-avatar: /img/about_me_avatar.jpg      # use absolute URL, seeing it's us
 
 # SNS settings
 RSS: false
-# weibo_username:     qiubaiying
-# zhihu_username:     qiubaiying
+# zhihu_username:     anriku
 github_username:    Anriku
 # facebook_username:  Wen Anriku
 jianshu_username:   9943f945c7c3
-#twitter_username:   qiubaiying
-
-
+#twitter_username:   anriku
 
 
 # Build settings
@@ -39,7 +36,7 @@ anchorjs: true                          # if you want to customize anchor. check
 
 # Gems
 # from PR#40, to support local preview for Jekyll 3.0
-gems: [jekyll-paginate]
+plugins: [jekyll-paginate]
 
 
 
@@ -53,17 +50,11 @@ highlighter: rouge
 kramdown:
   input: GFM                            # use Github Flavored Markdown !important
 
-
-
-# 评论系统
-# Disqus（https://disqus.com/）
-# disqus_username: Anriku
-
 # Gitalk
 gitalk:
   enable: true    #是否开启Gitalk评论
-  clientID: 95e3755da767c2a2c0c9   #生成的clientID
-  clientSecret: 1a228cf2ffaf5a8b9504b9d6c805d2a8608520c3  #同上
+  clientID: 07a92f7720d285c580d0   #生成的clientID
+  clientSecret: 71a8eea23f19a5594b26234b5f61839f8e3c7688  #同上
   repo: Anriku.github.io    #仓库名称
   owner: Anriku     #github用户名
   admin: Anriku
