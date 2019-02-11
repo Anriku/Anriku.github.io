@@ -93,21 +93,15 @@
 <script src="{{ "/js/anriku-blog.min.js " | prepend: site.baseurl }}"></script>
 
 <!-- Service Worker -->
+
 {% if site.service-worker %}
 <script type="text/javascript">
-    if (navigator.serviceWorker) {
-        // 为了确保用户的首次访问的体验将Server Worker的注册放在第一个网页加载后
-        // To ensure the user's experience, let the service worker registion after the first web page is loaded.
-        window.addEventListener("load", function () {
-            navigator.serviceWorker
-                .register('/sw.js')
-                .then((registration) => {
-                    console.log('Service Worker Registered. ', registration)
-                })
-                .catch((error) => {
-                    console.log('ServiceWorker registration failed: ', error)
-                })
-        });
+    if(navigator.serviceWorker){
+        // For security reasons, a service worker can only control the pages that are in the same directory level or below it. That's why we put sw.js at ROOT level.
+        navigator.serviceWorker
+            .register('/sw.js')
+            .then((registration) => {console.log('Service Worker Registered. ', registration)})
+            .catch((error) => {console.log('ServiceWorker registration failed: ', error)})
     }
 </script>
 {% endif %}
@@ -115,20 +109,16 @@
 
 <!-- async load function -->
 <script>
-    function async (u, c) {
-        var d = document,
-            t = 'script',
-            o = d.createElement(t),
-            s = d.getElementsByTagName(t)[0];
-        o.src = u;
-        if (c) {
-            o.addEventListener('load', function (e) {
-                c(null, e);
-            }, false);
-        }
-        s.parentNode.insertBefore(o, s);
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
     }
 </script>
+
 
 <!-- jquery.tagcloud.js -->
 <script>
@@ -207,7 +197,7 @@
     function generateCatalog(selector) {
         var P = $('div.post-container'),
             a, n, t, l, i, c;
-        a = P.find('h1,h2,h3,h4,h5,h6');
+        a = P.find('h1,h2,h3,h4');
         a.each(function () {
             n = $(this).prop('tagName').toLowerCase();
             console.log("tagName: " + n);
