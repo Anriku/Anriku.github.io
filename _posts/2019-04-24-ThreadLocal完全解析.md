@@ -8,7 +8,7 @@ header-img: img/2019_04_24_post.jpeg
 catalog: true
 tags:
     - ThreadLocal
-	- 源码
+    - 源码
 ---
 
 熟悉Android消息机制的话，对ThreadLocal这个类应该都不陌生。**Android消息机制中的Looper就是通过ThrealLocal来实现为每个线程建立一个独立Looper的。**
@@ -228,30 +228,3 @@ InheritableThreadLocal就是ThreadLocal的子类，很简单就是**使用线程
 * threadLocals用于对`ThreadLocal`进行存储的。
 
 * inheritableThreadLocals用于对`InheritableThreadLocal`进行存储的。其中inheritableThreadLocals会在Thread的init方法调用的时候继承父Thread的inheritableThreadLocals。
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
